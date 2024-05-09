@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Reservation System</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background: url('https://images.unsplash.com/photo-1566566220367-af8d77269124?q=80&w=1168&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+    background-size: cover; 
+    color: #e0e0e0; 
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+        .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333; 
+    padding: 10px 0; 
+    z-index: 1000;
+}
+
+.navbar a {
+    color: #f2f2f2; 
+    padding: 12px 16px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+.navbar a:hover {
+    background-color: #555; 
+    color: #fff; 
+}
+
+
+        .navbar::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .hero {
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #007BFF;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #222;
+
+
+        }
+        .news {
+            color: #222;
+        }
+        h2 {
+            color: #222;
+        }
+        .form-container {
+    background-color: #333;
+    padding: 40px; 
+    width: 50%; 
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    border-radius: 8px; 
+    margin-top: 60px; 
+}
+
+.input-group {
+    margin-bottom: 20px; 
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px; 
+    color: #ccc; 
+    font-size: 16px; 
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px; 
+    box-sizing: border-box;
+    background-color: #222; 
+    color: #ddd; 
+    border: 1px solid #444; 
+    border-radius: 4px; 
+}
+
+.input-group input[type="submit"] {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 15px 30px; 
+    font-size: 18px; 
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input[type="submit"]:hover {
+    background-color: #0056b3; 
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); 
+}
+        .button {
+            background-color: #0066cc; 
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s; 
+        }
+        .button:hover {
+            background-color: rgb(0, 132, 255); 
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); 
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="destinations.php">Explore Destinations</a>
+        <a href="search_results_users.php">Search for an Existing reservation</a>
+        <a href="view_schedules.php">View Schedules and Fares</a>
+        <a href="airports_user.php">View Airports you can visit</a>
+    </div>
+    
+    <h1>Welcome to AirCucho!</h1>
+    <div class="news">
+        <p>Don't miss our latest flight offers to Europe! Book now and save up to 20%.</p>
+        <p>Travel restrictions update regarding COVID-19.</p>
+    </div>
+
+    <h2>Book Your Flight!</h2>
+    <div class="form-container">
+        <form method="post" action="airline_db.php">
+            <div class="input-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="input-group">
+                <label for="credit_card_number">Credit Card Number:</label>
+                <input type="text" name="credit_card_number" id="credit_card_number" required>
+            </div>
+            <div class="input-group">
+                <label for="exp_date">Expiration Date (MM/YYYY):</label>
+                <input type="date" name="exp_date" id="exp_date" required>
+            </div>
+            <div class="input-group">
+                <label for="card_name">Name on Card:</label>
+                <input type="text" name="card_name" id="card_name" required>
+            </div>
+            <div class="input-group">
+                <label for="flightId">Flight ID:</label>
+                <select name="flightId" id="flightId" required>
+                    <option value="">Please select a flight</option>
+                    <option value="1">Flight 1</option>
+                    <option value="2">Flight 2</option>
+                    <option value="3">Flight 3</option>
+                    <option value="20">Flight 20 </option>
+                    <option value="21">Flight 21 </option>
+                    <option value="22">Flight 22</option>
+                    <option value="23">Flight 23</option>
+                    <option value="24">Flight 24</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="date">Date (YYYY-MM-DD):</label>
+                <input type="date" name="date" id="date" required>
+            </div>
+            <div class="input-group">
+                <label for="seatCategory">Seat Category:</label>
+                <select name="seatCategory" id="seatCategory" required>
+                    <option value="">Select Seat Category</option>
+                    
+                    <option value="1">Economy</option>
+                    <option value="2">Premium Economy</option>
+                    <option value="3">Business Class</option>
+                    <option value="4">First Class</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <input type="submit" name="bookTicket" value="Book Ticket">
+            </div>
+        </form>
+    </div>
+    <script>
+        function toggleVisibility(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === 'none') {
+                element.style.display = 'table-row-group';
+            } else {
+                element.style.display = 'none';
+            }
+        }
+
+        function fetchFlightDetails(flightId) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("flightDetails").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "getFlightDetails.php?flightId=" + flightId, true);
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>
